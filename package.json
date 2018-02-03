@@ -1,0 +1,53 @@
+{
+  "_from": "react-native-controlled-gif",
+  "_id": "react-native-controlled-gif@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-ketZKC6G49W4iblKYCnIA5Tcx78Yu48n/K5XzZUnMm69wAnZxs1054Re2V5xpSwX5VZasOBjW1iI1cTjtB/H5g==",
+  "_location": "/react-native-controlled-gif",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "react-native-controlled-gif",
+    "name": "react-native-controlled-gif",
+    "escapedName": "react-native-controlled-gif",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-native-keep-awake/-/react-native-keep-awake-2.0.6.tgz",
+  "_shasum": "d8eaffe0a6377cc197469d9f06c7f317225403db",
+  "_spec": "react-native-controlled-gif",
+  "_where": "/Applications/AMPPS/www/testPlugin",
+  "author": {
+    "name": "Kyle Corbitt"
+  },
+  "bugs": {
+    "url": "https://github.com/corbt/react-native-keep-awake/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "control the gif animation",
+  "homepage": "https://github.com/corbt/react-native-keep-awake#readme",
+  "keywords": [
+    "react-native",
+    "ios",
+    "android",
+    "awake",
+    "screen",
+    "lock",
+    "sleep"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "react-native-controlled-gif",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corbt/react-native-keep-awake.git"
+  },
+  "version": "1.0.0"
+}
