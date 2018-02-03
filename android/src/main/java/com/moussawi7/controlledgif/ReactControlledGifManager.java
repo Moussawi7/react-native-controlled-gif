@@ -3,22 +3,13 @@ package com.moussawi7.controlledgif;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
 import com.facebook.react.bridge.NativeModule;
-import com.facebook.react.bridge.ReactApplicationContext;
 
-import com.facebook.react.uimanager.ViewManager;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
-import android.widget.TextView;
 import java.util.*;
-import com.facebook.react.uimanager.annotations.ReactProp;
 import javax.annotation.Nullable;
-import com.facebook.react.views.image.ReactImageView;
-import com.facebook.react.bridge.ReadableArray;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import android.util.Log;
 
 import com.felipecsl.gifimageview.library.GifImageView;
-import android.widget.Toast;
 import android.graphics.Bitmap;
 import com.facebook.react.common.MapBuilder;
 import com.facebook.react.bridge.WritableMap;
@@ -26,8 +17,9 @@ import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.facebook.react.bridge.LifecycleEventListener;
+import com.facebook.react.uimanager.annotations.ReactProp;
 
-public class ReactImageManager extends SimpleViewManager<GifImageView> implements LifecycleEventListener{
+public class ReactControlledGifManager extends SimpleViewManager<GifImageView> implements LifecycleEventListener{
 
   public static final String REACT_CLASS = "RCTControlledGifView";
   private static ThemedReactContext reactContext = null;
@@ -41,24 +33,25 @@ public class ReactImageManager extends SimpleViewManager<GifImageView> implement
 
   @Override
   public void onHostDestroy() {
-    Log.e("#","onHostDestroy");
+  //  Log.e("#","onHostDestroy");
   }
 
   @Override
   public void onHostResume() {
-    Log.e("#","onHostResume");
+  //  Log.e("#","onHostResume");
   }
 
   @Override
   public void onHostPause() {
-    Log.e("#","onHostPause");
+  //  Log.e("#","onHostPause");
   }
 
   @Override
   @Nullable
   public Map getExportedCustomDirectEventTypeConstants() {
     MapBuilder.Builder builder = MapBuilder.builder();
-    builder.put("onReady", MapBuilder.of("registrationName", "onReady"));
+    builder.put(Events.READY.toString(), MapBuilder.of("registrationName", Events.READY.toString()));
+    builder.put(Events.ERROR.toString(), MapBuilder.of("registrationName", Events.ERROR.toString()));
     return builder.build();
   }
 
@@ -90,6 +83,14 @@ public class ReactImageManager extends SimpleViewManager<GifImageView> implement
 
     new GifDataDownloader() {
       @Override protected void onPostExecute(final byte[] bytes) {
+        if(bytes==null){
+          WritableMap event = Arguments.createMap();
+          event.putString("code","UNABLE_TO_LOAD");
+          event.putString("message","Unable to load file");
+          reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(view.getId(),Events.ERROR.toString(),event);
+          return;
+        }
+
         view.setBytes(bytes);
         if(isPlaying){
           view.startAnimation();
@@ -99,8 +100,6 @@ public class ReactImageManager extends SimpleViewManager<GifImageView> implement
         event.putString("height",""+view.getGifHeight());
         reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(view.getId(),Events.READY.toString(),event);
       }}.execute(url);
-
     }
-
 
   }

@@ -24,7 +24,7 @@ and in the render
     url="http://katemobile.ru/tmp/sample3.gif"
     isPlaying={true}
     onReady={(width,height)=>this.onReady(width,height)}
-    onError={(error)=>this.onError(error)}/>
+    onError={(code,message)=>this.onError(code,message)}/>
 ```
 
 ### Credits

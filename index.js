@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { requireNativeComponent, ViewPropTypes,ViewStylePropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
-class ControlledGif extends Component {
+class ControlledGifInterface extends Component {
 
   constructor(props, context){
     super(props, context);
@@ -27,8 +27,7 @@ class ControlledGif extends Component {
   }
 
   _onError(event) {
-    console.warn(JSON.stringify(event.nativeEvent));
-    this.props.onError && this.props.onError(event.nativeEvent);
+    this.props.onError&&this.props.onError(event.nativeEvent.code,event.nativeEvent.message);
   }
 
   render() {
@@ -40,10 +39,10 @@ class ControlledGif extends Component {
       style:this.props.style,
       ...ViewStylePropTypes
     };
-    return (<RCTControlledGifView {...nativeProps}/>);
+    return (<ControlledGifView {...nativeProps}/>);
   }
 
 }
 
-const RCTControlledGifView = requireNativeComponent('RCTControlledGifView', ControlledGif);
-export default ControlledGif;
+const ControlledGifView = requireNativeComponent('RCTControlledGifView', ControlledGifInterface);
+export default ControlledGifInterface;

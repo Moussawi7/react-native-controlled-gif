@@ -10,12 +10,11 @@ import java.util.*;
 import android.util.Log;
 import android.app.Activity;
 
-public class KCKeepAwakePackage implements ReactPackage {
+public class ControlledGifPackage implements ReactPackage {
 
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
-        modules.add(new KCKeepAwake(reactContext));
         return modules;
     }
 
@@ -27,7 +26,7 @@ public class KCKeepAwakePackage implements ReactPackage {
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
       return Arrays.<ViewManager>asList(
-        new ReactImageManager()
+        new ReactControlledGifManager()
       );
     }
 
