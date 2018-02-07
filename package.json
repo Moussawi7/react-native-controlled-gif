@@ -4,7 +4,7 @@
   "description": "React Native Control Gif animation",
   "author": "Moussawi7 <development@moussawi7.com>",
   "homepage": "https://github.com/Moussawi7/react-native-controlled-gif#readme",
-  "main": "src/index.js",
+  "main": "./index.js",
   "license": "MIT",
   "scripts": {
     "start": "react-native start"
